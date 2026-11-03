@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 // definicao de tipo
@@ -59,7 +60,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista já possuir elementos
+	// se a lista jï¿½ possuir elementos
 	// libera a memoria ocupada
 	NO* aux = topo;
 	while (aux != NULL) {
@@ -80,19 +81,37 @@ void push()
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
+		cout <<"Erro ao alocar memoria. \n";
 		return;
 	}
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
-	novo->prox = NULL;
+	novo->prox = topo;
+	topo = novo;
+
+	cout <<"Elemento " << novo ->valor
+		<<"inserido no topo da pilha \n";
+
 
 
 }
 
 void pop()
 {
+	if (topo== NULL)
+	{
+		cout << "Pilha vazia.\n";
+		return;
+	}
+	
+	NO* aux = topo;
 
+	cout <<"Elemento removido:" <<aux ->valor << "\n";
+
+	topo = topo ->prox;
+
+	free(aux);
 	
 
 }
